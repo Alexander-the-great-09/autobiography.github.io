@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .album-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .album {
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #20cfcf;
+        }
+
+        .gallery {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .gallery img {
+            max-width: 600px;
+            max-height: 300px;
+            height: auto;
+            width: auto;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .close {
+            top: 10px;
+            right: 20px;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gallery</h1>
+    <div class="album-container">
+        <div class="album" onclick="showGallery('pupil-of-fate')">Pupil of Fate</div>
+        <div class="album" onclick="showGallery('first-motors')">First Motors</div>
+    </div>
+    <div id="pupil-of-fate" class="gallery">
+        <img src="image1.jpeg" alt="Photo 1" onclick="openLightbox(0, 'pupil-of-fate')">
+        <img src="image2.jpeg" alt="Photo 2" onclick="openLightbox(1, 'pupil-of-fate')">
+        <img src="image3.jpeg" alt="Photo 3" onclick="openLightbox(2, 'pupil-of-fate')">
+        <img src="image4.jpeg" alt="Photo 4" onclick="openLightbox(3, 'pupil-of-fate')">
+        <img src="image5.jpeg" alt="Photo 5" onclick="openLightbox(4, 'pupil-of-fate')">
+        <img src="image6.jpeg" alt="Photo 6" onclick="openLightbox(5, 'pupil-of-fate')">
+        <img src="image7.jpeg" alt="Photo 7" onclick="openLightbox(6, 'pupil-of-fate')">
+        <img src="image8.jpeg" alt="Photo 8" onclick="openLightbox(7, 'pupil-of-fate')">
+        <img src="image9.jpeg" alt="Photo 9" onclick="openLightbox(8, 'pupil-of-fate')">
+        <img src="image10.jpeg" alt="Photo 10" onclick="openLightbox(9, 'pupil-of-fate')">
+        <img src="image11.jpeg" alt="Photo 11" onclick="openLightbox(10, 'pupil-of-fate')">
+        <img src="image12.jpeg" alt="Photo 12" onclick="openLightbox(11, 'pupil-of-fate')">
+        <img src="image13.jpeg" alt="Photo 13" onclick="openLightbox(12, 'pupil-of-fate')">
+        <img src="image14.jpeg" alt="Photo 14" onclick="openLightbox(13, 'pupil-of-fate')">
+        <img src="image15.jpeg" alt="Photo 15" onclick="openLightbox(14, 'pupil-of-fate')">
+        <img src="image16.jpeg" alt="Photo 16" onclick="openLightbox(15, 'pupil-of-fate')">
+        <img src="image17.jpeg" alt="Photo 17" onclick="openLightbox(16, 'pupil-of-fate')">
+        <img src="image18.jpeg" alt="Photo 18" onclick="openLightbox(17, 'pupil-of-fate')">
+        <img src="image19.jpeg" alt="Photo 19" onclick="openLightbox(18, 'pupil-of-fate')">
+        <img src="image20.jpeg" alt="Photo 20" onclick="openLightbox(19, 'pupil-of-fate')">
+        <img src="image21.jpeg" alt="Photo 21" onclick="openLightbox(20, 'pupil-of-fate')">
+    </div>
+
+    <div id="first-motors" class="gallery">
+        <img src="image22.jpeg" alt="Photo 22" onclick="openLightbox(0, 'first-motors')">
+        <img src="image23.jpeg" alt="Photo 23" onclick="openLightbox(1, 'first-motors')">
+        <img src="image24.jpeg" alt="Photo 24" onclick="openLightbox(2, 'first-motors')">
+        <img src="image25.jpeg" alt="Photo 25" onclick="openLightbox(3, 'first-motors')">
+        <img src="image26.jpeg" alt="Photo 26" onclick="openLightbox(4, 'first-motors')">
+        <img src="image27.jpeg" alt="Photo 27" onclick="openLightbox(5, 'first-motors')">
+        <img src="image28.jpeg" alt="Photo 28" onclick="openLightbox(6, 'first-motors')">
+        <img src="image29.jpeg" alt="Photo 29" onclick="openLightbox(7, 'first-motors')">
+        <img src="image30.jpeg" alt="Photo 30" onclick="openLightbox(8, 'first-motors')">
+        <img src="image31.jpeg" alt="Photo 31" onclick="openLightbox(9, 'first-motors')">
+        <img src="image32.jpeg" alt="Photo 32" onclick="openLightbox(10, 'first-motors')">
+        <img src="image33.jpeg" alt="Photo 33" onclick="openLightbox(11, 'first-motors')">
+        <img src="image34.jpeg" alt="Photo 34" onclick="openLightbox(12, 'first-motors')">
+        <img src="image35.jpeg" alt="Photo 35" onclick="openLightbox(13, 'first-motors')">
+        <img src="image36.jpeg" alt="Photo 36" onclick="openLightbox(14, 'first-motors')">
+        <img src="image37.jpeg" alt="Photo 37" onclick="openLightbox(15, 'first-motors')">
+        <img src="image38.jpeg" alt="Photo 38" onclick="openLightbox(16, 'first-motors')">
+        <img src="image39.jpeg" alt="Photo 39" onclick="openLightbox(17, 'first-motors')">
+        <img src="image40.jpeg" alt="Photo 40" onclick="openLightbox(18, 'first-motors')">
+        <img src="image41.jpeg" alt="Photo 41" onclick="openLightbox(19, 'first-motors')">
+        <img src="image42.jpeg" alt="Photo 42" onclick="openLightbox(20, 'first-motors')">
+        <img src="image43.jpeg" alt="Photo 43" onclick="openLightbox(21, 'first-motors')">
+        <img src="image44.jpeg" alt="Photo 44" onclick="openLightbox(22, 'first-motors')">
+        <img src="image45.jpeg" alt="Photo 45" onclick="openLightbox(23, 'first-motors')">
+        <img src="image46.jpeg" alt="Photo 46" onclick="openLightbox(24, 'first-motors')">
+        <img src="image47.jpeg" alt="Photo 47" onclick="openLightbox(25, 'first-motors')">
+        <img src="image48.jpeg" alt="Photo 48" onclick="openLightbox(26, 'first-motors')">
+        <img src="image49.jpeg" alt="Photo 49" onclick="openLightbox(27, 'first-motors')">
+        <img src="image50.jpeg" alt="Photo 50" onclick="openLightbox(28, 'first-motors')">
+        <img src="image51.jpeg" alt="Photo 51" onclick="openLightbox(29, 'first-motors')">
+        <img src="image52.jpeg" alt="Photo 52" onclick="openLightbox(30, 'first-motors')">
+        <img src="image53.jpeg" alt="Photo 53" onclick="openLightbox(31, 'first-motors')">
+        <img src="image54.jpeg" alt="Photo 54" onclick="openLightbox(32, 'first-motors')">
+        <img src="image55.jpeg" alt="Photo 55" onclick="openLightbox(33, 'first-motors')">
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+        <img id="lightbox-img" src="">
+        <span class="next" onclick="changeImage(1)">&#10095;</span>
+    </div>
+    <script>
+        let currentIndex = 0;
+        let currentAlbum = '';
+        function showGallery(id) {
+            document.querySelectorAll('.gallery').forEach(gallery => {
+                gallery.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'flex';
+        }
+        function openLightbox(index, album) {
+            currentIndex = index;
+            currentAlbum = album;
+            updateLightboxImage();
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+        function changeImage(step) {
+            const images = document.querySelectorAll(`#${currentAlbum} img`);
+            currentIndex = (currentIndex + step + images.length) % images.length;
+            updateLightboxImage();
+        }
+        function updateLightboxImage() {
+            const images = document.querySelectorAll(`#${currentAlbum} img`);
+            document.getElementById('lightbox-img').src = images[currentIndex].src;
+        }
+    </script>
+</body>
+
+</html>
