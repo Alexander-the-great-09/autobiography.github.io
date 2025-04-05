@@ -15,17 +15,44 @@
 
         .album-container {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
         }
 
         .album {
-            background: #1e1e1e;
-            padding: 10px;
-            border-radius: 8px;
+            position: relative;
+            width: 720px;
+            height: 480px;
+            overflow: hidden;
+            border-radius: 12px;
             cursor: pointer;
-            color: #20cfcf;
+        }
+
+        .album img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            display: block;
+        }
+
+        .album-title {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .album:hover img {
+            transform: scale(1.05);
+            filter: brightness(80%);
         }
 
         .gallery {
@@ -87,15 +114,37 @@
         .next {
             right: 20px;
         }
+
+        .back-button {
+            display: none;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #20cfcf;
+            color: #121212;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <h1>Gallery</h1>
-    <div class="album-container">
-        <div class="album" onclick="showGallery('pupil-of-fate')">Pupil of Fate</div>
-        <div class="album" onclick="showGallery('first-motors')">First Motors</div>
+
+    <div class="album-container" id="album-buttons">
+        <div class="album" onclick="showGallery('pupil-of-fate')">
+            <img src="image5.jpeg" alt="Pupil of Fate">
+            <div class="album-title">Pupil of Fate</div>
+        </div>
+        <div class="album" onclick="showGallery('first-motors')">
+            <img src="image33.jpeg" alt="First Motors">
+            <div class="album-title">First Motors</div>
+        </div>
     </div>
+
+    <button class="back-button" id="back-button" onclick="goBack()">Back to Albums</button>
+
     <div id="pupil-of-fate" class="gallery">
         <img src="image1.jpeg" alt="Photo 1" onclick="openLightbox(0, 'pupil-of-fate')">
         <img src="image2.jpeg" alt="Photo 2" onclick="openLightbox(1, 'pupil-of-fate')">
@@ -163,6 +212,7 @@
         <img id="lightbox-img" src="">
         <span class="next" onclick="changeImage(1)">&#10095;</span>
     </div>
+
     <script>
         let currentIndex = 0;
         let currentAlbum = '';
@@ -171,6 +221,15 @@
                 gallery.style.display = 'none';
             });
             document.getElementById(id).style.display = 'flex';
+            document.getElementById('album-buttons').style.display = 'none';
+            document.getElementById('back-button').style.display = 'block';
+        }
+        function goBack() {
+            document.querySelectorAll('.gallery').forEach(gallery => {
+                gallery.style.display = 'none';
+            });
+            document.getElementById('album-buttons').style.display = 'flex';
+            document.getElementById('back-button').style.display = 'none';
         }
         function openLightbox(index, album) {
             currentIndex = index;
