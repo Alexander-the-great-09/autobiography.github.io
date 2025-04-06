@@ -126,6 +126,12 @@
             font-weight: bold;
             cursor: pointer;
         }
+
+        .lightbox img.zoomed {
+            transform: scale(1.8);
+            transition: transform 0.3s ease;
+            cursor: zoom-out;
+        }
     </style>
 </head>
 
@@ -209,7 +215,7 @@
     <div class="lightbox" id="lightbox">
         <span class="close" onclick="closeLightbox()">&times;</span>
         <span class="prev" onclick="changeImage(-1)">&#10094;</span>
-        <img id="lightbox-img" src="">
+        <img id="lightbox-img" src="" onclick="toggleZoom()">
         <span class="next" onclick="changeImage(1)">&#10095;</span>
     </div>
 
@@ -248,6 +254,11 @@
         function updateLightboxImage() {
             const images = document.querySelectorAll(`#${currentAlbum} img`);
             document.getElementById('lightbox-img').src = images[currentIndex].src;
+        }
+
+                function toggleZoom() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.toggle('zoomed');
         }
     </script>
 </body>
